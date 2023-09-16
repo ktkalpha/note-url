@@ -15,7 +15,11 @@
   <script src="https://cdn.jsdelivr.net/npm/js-base64@3.6.1/base64.min.js"></script>
   <script>
     let text = document.querySelector("textarea#text");
-    text.addEventListener("keydown", () => {
+    const urlParams = new URL(location.href).searchParams;
+    text.value = urlParams.get("text")
+      ? Base64.decode(urlParams.get("text"))
+      : "";
+    text.addEventListener("keyup", () => {
       window.history.pushState(
         "note",
         "note",
