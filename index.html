@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <textarea id="text"></textarea>
+    <div>
+      <input style="font-size: 20px" value="20" type="number" />
+      <label>px</label>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/js-base64@3.6.1/base64.min.js"></script>
+  <script>
+    let text = document.querySelector("textarea#text");
+    text.addEventListener("keydown", () => {
+      window.history.pushState(
+        "note",
+        "note",
+        `?text=${Base64.encode(text.value)}`
+      );
+    });
+    let input = document.querySelector("input");
+    input.addEventListener("change", () => {
+      text.style.fontSize = `${document.querySelector("input").value}px`;
+    });
+  </script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+    input {
+      margin-top: 10px;
+      font-family: Fira Code, Noto Sans KR;
+      font-size: 20px;
+    }
+    textarea {
+      font-family: Fira Code, Noto Sans KR;
+      margin-top: 20px;
+      padding: 10px;
+      width: 90dvw;
+      height: 90dvh;
+      border: 0;
+      border-radius: 20px;
+      outline: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      resize: none;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+  </style>
+</html>
